@@ -27,7 +27,6 @@ const XrHitCube = () => {
     });
 
     const placeCube = (e) => {
-        console.log("e", e);
         let position = e.intersection.object.position.clone();
         let id = Date.now();
         setCubes([...cubes, { position, id }]);
@@ -42,10 +41,7 @@ const XrHitCube = () => {
                     return <Cube key={id} position={position} />;
                 })}
             {isPresenting && (
-                <Interactive
-                    onSelect={placeCube}
-                    onMove={(e) => console.log("move e", e)}
-                >
+                <Interactive onSelect={placeCube}>
                     <mesh ref={reticleRef} rotation-x={-Math.PI / 2}>
                         <ringGeometry args={[0.1, 0.25, 32]} />
                         <meshStandardMaterial color={"white"} />
